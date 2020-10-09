@@ -1,0 +1,5 @@
+---
+# tasks file for even.es.ubuntu
+---
+- include_tasks: init_user.yml
+- include_tasks: init_disk.yml

@@ -1,0 +1,25 @@
+---
+# defaults file for even.es.ubuntu
+version: '5.6.4'
+
+TimeZone: 'Asia/Shanghai'
+
+loginuser: web
+
+chpass: 1data.INFO201807
+
+username: elasticsearch
+
+ntp_servers: 
+  - 'cn.pool.ntp.org'
+  - 's1b.time.edu.cn'
+
+jdk_package_name: jdk-8u202-linux-x64.tar.gz 
+
+env_file: /etc/profile
+
+jdk_version: jdk1.8.0_202
+
+data_path: /opt/es/elasticsearch-{{ version }}/data
+
+log_path: /data1/elasticsearch-{{ version }}/log

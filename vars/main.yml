@@ -1,0 +1,14 @@
+---
+# vars file for even.es.ubuntu
+---
+disks:
+  /dev/vdb: /data1
+  /dev/vdc: /data2
+  /dev/vdd: /data3
+  /dev/vde: /data4
+  /dev/vdf: /data5
+  /dev/vdg: /data6
+  /dev/vdh: /data7
+  /dev/vdi: /data8
+  /dev/vdj: /data9
+  /dev/vdk: /data10

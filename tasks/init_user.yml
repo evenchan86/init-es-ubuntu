@@ -1,0 +1,19 @@
+---
+- name: Create user {{ loginuser }}
+  user:
+    name: "{{ loginuser }}"
+    shell: /bin/bash
+    system: yes
+    groups: docker
+    createhome: yes
+    password: "{{ chpass | password_hash('sha512')}}"
+    home: "/home/{{ loginuser }}"
+    state: present
+
+- name: user have sudo 
+  shell: adduser {{ loginuser }} sudo
+  args:
+    executable: /bin/bash
+
+- name: 分发公钥至各节点
+  authorized_key: user={{ loginuser }} key="{{ lookup('file', 'id_rsa.pub') }}"
