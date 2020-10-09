@@ -1,6 +1,4 @@
 ---
-# vars file for even.es.ubuntu
----
 disks:
   /dev/vdb: /data1
   /dev/vdc: /data2
