@@ -4,7 +4,6 @@
     name: "{{ loginuser }}"
     shell: /bin/bash
     system: yes
-    groups: docker
     createhome: yes
     password: "{{ chpass | password_hash('sha512')}}"
     home: "/home/{{ loginuser }}"
