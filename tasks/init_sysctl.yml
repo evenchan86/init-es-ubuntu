@@ -9,3 +9,8 @@
 
 - name: sysctl -p
   shell: /sbin/sysctl -p
+
+- name: install pkg
+  apt:
+    pkg:
+      - nfs-common

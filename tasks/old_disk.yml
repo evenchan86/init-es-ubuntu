@@ -1,0 +1,26 @@
+
+---
+- file:
+    path: "{{ item.value }}"
+    state: directory
+    owner: web
+    group: web
+    mode: 0755
+  with_dict: "{{ disks }}"
+
+- name: format datanode disks
+  filesystem: fstype=ext4 dev="{{ item.key }}" force=true
+  with_dict: "{{ disks }}"
+
+- name: mount datanode disks
+  mount:
+    path: "{{ item.value }}"
+    src: "{{ item.key }}"
+    fstype: ext4
+    opts: "defaults,noatime,nobarrier"
+    state: mounted
+  with_dict: "{{ disks }}"
+
+- name: mkdir directory for es data
+  file: dest=/{{ item.value }}/es mode=0755 state=directory owner=web group=web
+  with_dict: "{{ disks }}"

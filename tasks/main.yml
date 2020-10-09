@@ -1,4 +1,2 @@
 ---
-- include_tasks: init_sysctl.yml
-
-- include_tasks: init_jdk.yml
+- include_tasks: old_disk.yml
