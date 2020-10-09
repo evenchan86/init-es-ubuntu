@@ -34,12 +34,6 @@
     state: mounted
   with_dict: "{{ disks }}"
 
-- name: set fstab
-  lineinfile: 
-    dest: /etc/fstab
-    line: "{{ item.key }} {{ item.value }} ext4 defaults 0 0"
-  with_dict: "{{ disks }}"
-  
 - name: mkdir directory for es data
   file: dest=/{{ item.value }}/es mode=0755 state=directory owner=elasticsearch group=elasticsearch
   with_dict: "{{ disks }}"

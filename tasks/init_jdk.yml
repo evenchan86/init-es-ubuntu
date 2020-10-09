@@ -1,0 +1,29 @@
+- name: create jdk dir
+  file:  
+    path: "{{ jdk_home }}"
+    state: directory       
+
+- name: install jdk
+  get_url:  url={{download_url}}{{jdk_version}} dest={{jdk_home}}
+
+- name: tar tar.gz
+  shell: chdir={{ jdk_home }}  tar -zxf {{jdk_version}}
+
+- name: soft link
+  file: 
+    src={{ jdk_home }}/{{jdk_name}} 
+    dest=/usr/local/java 
+    state=link
+
+- name: java_profile config
+  shell: /bin/echo {{ item }} >> /etc/profile.d/oraclejdk.sh && source /etc/profile.d/oraclejdk.sh
+  args:
+    executable: /bin/bash
+  with_items:
+    - export JDK_BASE_HOME={{ jdk_home }}
+    - export JDK_HOME=\$JDK_BASE_HOME/{{jdk_name}}
+    - export J2SDKDIR=\$JDK_HOME
+    - export J2REDIR=\$JDK_HOME/jre
+    - export JAVA_HOME=\$JDK_HOME
+    - export DERBY_HOME=\$JDK_HOME/db
+    - export PATH=$PATH:\$JDK_HOME/bin:$JDK_HOME/db/bin:\$JDK_HOME/jre/bin

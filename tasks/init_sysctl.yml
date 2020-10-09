@@ -1,0 +1,11 @@
+---
+- name: copy limit config
+  copy: src=files/limits.conf dest=/etc/security/limits.conf 
+        owner=root group=root mode=0644
+
+- name: update sysctl.conf
+  copy: src=files/sysctl.conf dest=/etc/sysctl.conf
+        owner=root group=root mode=0644
+
+- name: sysctl -p
+  shell: /sbin/sysctl -p

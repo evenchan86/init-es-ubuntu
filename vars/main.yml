@@ -10,3 +10,8 @@ disks:
   /dev/vdi: /data8
   /dev/vdj: /data9
   /dev/vdk: /data10
+
+jdk_home: /usr/lib/jvm
+download_url: http://download.1datatech.cn/repository/jdk/
+jdk_version: jdk-8u131-linux-x64.tar.gz
+jdk_name: jdk1.8.0_131 
