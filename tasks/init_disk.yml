@@ -1,23 +1,9 @@
 ---
-- name: create user
-  user: name={{ username }} shell=/bin/bash createhome=yes
-
-- name: 分发公钥至各节点
-  authorized_key: user={{ username }} key="{{ lookup('file', 'id_rsa.pub') }}"
-
-- name: update sudoers file
-  lineinfile:
-    dest: /etc/sudoers
-    line: '{{ username }} ALL=(ALL) NOPASSWD: ALL'
-    insertafter: EOF
-    regexp: '^{{ username }} .*'
-    state: present    
-    
 - file:
     path: "{{ item.value }}"
     state: directory
-    owner: elasticsearch
-    group: elasticsearch
+    owner: web
+    group: web
     mode: 0755
   with_dict: "{{ disks }}"
 
@@ -35,5 +21,5 @@
   with_dict: "{{ disks }}"
 
 - name: mkdir directory for es data
-  file: dest=/{{ item.value }}/es mode=0755 state=directory owner=elasticsearch group=elasticsearch
+  file: dest=/{{ item.value }}/es mode=0755 state=directory owner=web group=web
   with_dict: "{{ disks }}"
